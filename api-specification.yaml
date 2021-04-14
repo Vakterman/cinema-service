@@ -1,0 +1,114 @@
+openapi: "3.0.0"
+info:
+    title: "Lunatech service"
+    description: "Lunatech service "
+    version: 0.1.0
+servers:
+  - url: https://{host-name}:8443/api/v1
+    variables:
+      host-name:
+        default: 127.0.0.1
+        description: "Host name of the api server"
+paths:
+    /primaryTitle:
+      get:
+        summary: "Get list of titles by primary title (full text search)"
+        parameters:
+          - in: query
+            name: title
+            schema: 
+              type: string
+        responses:
+          '200':
+            description: "List of titles"
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Title'
+          '500':
+            description: "Unknown error"
+            
+    /originalTitle:
+      get:
+        summary: "Get list of titles by orignal title"
+        parameters:
+          - in: query
+            name: title
+            schema: 
+              type: string
+        responses:
+          '200':
+            description: "List of titles"
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Title'
+          '500':
+            description: "Unknown error"
+    /byGenre:
+      get:
+        summary: "By genre with specified limit"
+        parameters:
+          - in: query
+            name: genre
+            schema: 
+              type: string
+          - in: query
+            name: limit
+            schema: 
+              type: integer    
+        responses:
+          '200':
+            description: "List of titles"
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Title'
+          '500':
+            description: "Unknown error"        
+            
+                  
+components:
+  schemas:
+    Title:
+      type: object
+      required:
+        - primaryTitle
+        - originalTitle
+        - startYear
+      properties:
+        primaryTitle:
+          type: string
+          description: 'Primary title '
+        originalTitle:
+          type: string
+          description: 'Original title (native language) '
+        startYear: 
+          type: integer
+          description: 'Start year'
+        endYear:
+          type: integer
+          description: 'End year (for tv series only)'
+        genres:
+          type: array
+          description: 'Set of genres'
+          items:
+            type: string
+        isAdult:
+          type: boolean
+        runtimeMinutes:
+          type: integer
+          description: 'duration'
+        rating:
+          type: number
+          format: float
+          
+          
+        
+          

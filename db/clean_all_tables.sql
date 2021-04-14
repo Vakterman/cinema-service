@@ -1,0 +1,1 @@
+truncate title_info.title_type, title_info.titles, title_info.title_genres, title_info.title_person,title_info.genres;
