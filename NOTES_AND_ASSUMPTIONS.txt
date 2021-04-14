@@ -1,11 +1,11 @@
-1. For first easiest tasks i decided to 2 datasets:
+1. For first easiest tasks I picked 2 datasets:
    - title.basics.tsv.gz (unpack it and put to dataset directory with name title.basics.tsv)
    - title.ratings.tsv.gz (unpack it and put to dataset directory title.ratings.tsv)
-   I decided it would be enough to get basic information information and provide minimum which is necessary
-2. For this purposes I designed my own schema version and implemented uploading data for it because
-i decided that alphabetical indexes are not best choice as primary key.
+   I decided it would be enough to get basic information  and provide minimum which is necessary for getting title info.
 
-Processing python can be launched in next way:
+2. For this purposes I designed my own schema version because text indexes are not best choice as primary key. Data preprocessing was implemented in Python. 
+
+Pre-processing python scripts  can be launched in next way:
 $ python batch_processing.py batch_processing.conf
 
 This command drops and re-creates test database (name can be set in configuration file ) with title_info schema
@@ -14,7 +14,5 @@ This command drops and re-creates test database (name can be set in configuratio
 simple index)
 
 4. API examples you can see in swagger specification
-5. For simplicity I did not use any sophisticated frameworks in order to rad from db. Just my own implementation.
-
-6. List of scala specific patterns which were applied in this
-
+5. For simplicity I did not use any sophisticated frameworks in order to retrieve data from db. Just my own implementation.
+	
